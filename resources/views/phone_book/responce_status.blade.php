@@ -210,11 +210,7 @@ Phone Book
                     <label for="Remarks">Remarks</label>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                    <textarea cols="45" data-val="true"
-                        data-val-maxlength="The field Remarks must be a string or array type with a maximum length of &#39;100&#39;."
-                        data-val-maxlength-max="100"
-                        htmlAttributes="{ class = form-control, placeholder = Remarks, rows = 3, style = width:inherit; }"
-                        id="Remarks" name="dep_remarks" rows="5"> </textarea>
+                    <textarea cols="45" id="Remarks" name="dep_remarks" rows="5" required> </textarea>
                 </div>
             </div>
 
@@ -253,7 +249,7 @@ Phone Book
                             <td>{{ $caller->response_status }}</td>
                             <td>{{ $caller->visa_info }}</td>
                             <td>{{ $caller->ticket_info }}</td>
-                            <td>{{ $caller->updated_at }}</td>
+                            <td>{{ $caller->created_at }}</td>
                         </tr>
                         @endforeach
 

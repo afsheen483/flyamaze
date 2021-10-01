@@ -196,7 +196,7 @@ class PhoneBookController extends Controller
        c.first_name,
        c.last_name,
          l.*,
-       c.updated_at
+       c.created_at
    FROM
        caller_log l
    JOIN contact c ON
