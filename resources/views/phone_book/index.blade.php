@@ -460,10 +460,12 @@
                @endhasrole
                 <br>
 
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1" style="margin-left: 1.4%">
-                    Assign Caller
-                </button>
-                
+              @hasanyrole('admin|Manager')
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1" style="margin-left: 1.4%">
+                Assign Caller
+            </button>
+            
+              @endhasanyrole
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
