@@ -38,7 +38,7 @@ class PhoneBookController extends Controller
             c.is_deleted = 0 AND
             c.caller_id = '".$id."'
             ORDER BY c.id DESC");
-
+            //dd($data);
             return view('phone_book.index',compact('data'));
         }
         if (Auth::user()->hasRole('Manager')) {
@@ -131,9 +131,348 @@ class PhoneBookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($filter)
     {
-        //
+        $id = Auth::user()->id;
+        if (Auth::user()->hasRole('caller') && $filter == 'completed') {
+            $data =  DB::select("SELECT
+            c.*,
+            CONCAT(r.first_name,' ',r.last_name) AS manager_name,
+           CONCAT(rs.first_name,' ',rs.last_name) AS caller_name
+        FROM
+            contact c
+       LEFT JOIN users r ON
+            r.id = c.manager_id
+        LEFT JOIN users rs ON
+            rs.id = c.caller_id
+        WHERE
+            c.is_deleted = 0 AND 
+            c.response_status = 'Completed' AND
+            c.caller_id = '".$id."'
+            ORDER BY c.id DESC");
+
+            return view('phone_book.index',compact('data'));
+        }
+        if (Auth::user()->hasRole('caller') && $filter == 'notanswered') {
+            $data =  DB::select("SELECT
+            c.*,
+            CONCAT(r.first_name,' ',r.last_name) AS manager_name,
+           CONCAT(rs.first_name,' ',rs.last_name) AS caller_name
+        FROM
+            contact c
+       LEFT JOIN users r ON
+            r.id = c.manager_id
+        LEFT JOIN users rs ON
+            rs.id = c.caller_id
+        WHERE
+            c.is_deleted = 0 AND 
+            c.response_status = 'NotAnswerd' AND
+            c.caller_id = '".$id."'
+            ORDER BY c.id DESC");
+
+            return view('phone_book.index',compact('data'));
+        }
+        if (Auth::user()->hasRole('caller') && $filter == 'Busy') {
+            $data =  DB::select("SELECT
+            c.*,
+            CONCAT(r.first_name,' ',r.last_name) AS manager_name,
+           CONCAT(rs.first_name,' ',rs.last_name) AS caller_name
+        FROM
+            contact c
+       LEFT JOIN users r ON
+            r.id = c.manager_id
+        LEFT JOIN users rs ON
+            rs.id = c.caller_id
+        WHERE
+            c.is_deleted = 0 AND 
+            c.response_status = 'Busy' AND
+            c.caller_id = '".$id."'
+            ORDER BY c.id DESC");
+
+            return view('phone_book.index',compact('data'));
+        }
+        if (Auth::user()->hasRole('caller') && $filter == 'Pending') {
+            $data =  DB::select("SELECT
+            c.*,
+            CONCAT(r.first_name,' ',r.last_name) AS manager_name,
+           CONCAT(rs.first_name,' ',rs.last_name) AS caller_name
+        FROM
+            contact c
+       LEFT JOIN users r ON
+            r.id = c.manager_id
+        LEFT JOIN users rs ON
+            rs.id = c.caller_id
+        WHERE
+            c.is_deleted = 0 AND 
+            c.response_status = 'Pending' AND
+            c.caller_id = '".$id."'
+            ORDER BY c.id DESC");
+
+            return view('phone_book.index',compact('data'));
+        }
+        if (Auth::user()->hasRole('caller') && $filter == 'InProcess') {
+            $data =  DB::select("SELECT
+            c.*,
+            CONCAT(r.first_name,' ',r.last_name) AS manager_name,
+           CONCAT(rs.first_name,' ',rs.last_name) AS caller_name
+        FROM
+            contact c
+       LEFT JOIN users r ON
+            r.id = c.manager_id
+        LEFT JOIN users rs ON
+            rs.id = c.caller_id
+        WHERE
+            c.is_deleted = 0 AND 
+            c.response_status = 'InProcess' AND
+            c.caller_id = '".$id."'
+            ORDER BY c.id DESC");
+
+            return view('phone_book.index',compact('data'));
+        }
+        if (Auth::user()->hasRole('caller') && $filter == 'assigned') {
+            $data =  DB::select("SELECT
+            c.*,
+            CONCAT(r.first_name,' ',r.last_name) AS manager_name,
+           CONCAT(rs.first_name,' ',rs.last_name) AS caller_name
+        FROM
+            contact c
+       LEFT JOIN users r ON
+            r.id = c.manager_id
+        LEFT JOIN users rs ON
+            rs.id = c.caller_id
+        WHERE
+            c.is_deleted = 0 AND 
+            c.caller_id = '".$id."'
+            ORDER BY c.id DESC");
+
+            return view('phone_book.index',compact('data'));
+        }
+            // manager
+        if (Auth::user()->hasRole('Manager') && $filter == 'completed') {
+            $data =  DB::select("SELECT
+            c.*,
+            CONCAT(r.first_name,' ',r.last_name) AS manager_name,
+           CONCAT(rs.first_name,' ',rs.last_name) AS caller_name
+        FROM
+            contact c
+       LEFT JOIN users r ON
+            r.id = c.manager_id
+        LEFT JOIN users rs ON
+            rs.id = c.caller_id
+        WHERE
+            c.is_deleted = 0 AND 
+            c.response_status = 'Completed' AND
+            c.caller_id = '".$id."'
+            ORDER BY c.id DESC");
+
+            return view('phone_book.index',compact('data'));
+        }
+        if (Auth::user()->hasRole('Manager') && $filter == 'notanswered') {
+            $data =  DB::select("SELECT
+            c.*,
+            CONCAT(r.first_name,' ',r.last_name) AS manager_name,
+           CONCAT(rs.first_name,' ',rs.last_name) AS caller_name
+        FROM
+            contact c
+       LEFT JOIN users r ON
+            r.id = c.manager_id
+        LEFT JOIN users rs ON
+            rs.id = c.caller_id
+        WHERE
+            c.is_deleted = 0 AND 
+            c.response_status = 'NotAnswerd' AND
+            c.caller_id = '".$id."'
+            ORDER BY c.id DESC");
+
+            return view('phone_book.index',compact('data'));
+        }
+        if (Auth::user()->hasRole('Manager') && $filter == 'Busy') {
+            $data =  DB::select("SELECT
+            c.*,
+            CONCAT(r.first_name,' ',r.last_name) AS manager_name,
+           CONCAT(rs.first_name,' ',rs.last_name) AS caller_name
+        FROM
+            contact c
+       LEFT JOIN users r ON
+            r.id = c.manager_id
+        LEFT JOIN users rs ON
+            rs.id = c.caller_id
+        WHERE
+            c.is_deleted = 0 AND 
+            c.response_status = 'Busy' AND
+            c.caller_id = '".$id."'
+            ORDER BY c.id DESC");
+
+            return view('phone_book.index',compact('data'));
+        }
+        if (Auth::user()->hasRole('Manager') && $filter == 'Pending') {
+            $data =  DB::select("SELECT
+            c.*,
+            CONCAT(r.first_name,' ',r.last_name) AS manager_name,
+           CONCAT(rs.first_name,' ',rs.last_name) AS caller_name
+        FROM
+            contact c
+       LEFT JOIN users r ON
+            r.id = c.manager_id
+        LEFT JOIN users rs ON
+            rs.id = c.caller_id
+        WHERE
+            c.is_deleted = 0 AND 
+            c.response_status = 'Pending' AND
+            c.caller_id = '".$id."'
+            ORDER BY c.id DESC");
+
+            return view('phone_book.index',compact('data'));
+        }
+        if (Auth::user()->hasRole('Manager') && $filter == 'InProcess') {
+            $data =  DB::select("SELECT
+            c.*,
+            CONCAT(r.first_name,' ',r.last_name) AS manager_name,
+           CONCAT(rs.first_name,' ',rs.last_name) AS caller_name
+        FROM
+            contact c
+       LEFT JOIN users r ON
+            r.id = c.manager_id
+        LEFT JOIN users rs ON
+            rs.id = c.caller_id
+        WHERE
+            c.is_deleted = 0 AND 
+            c.response_status = 'InProcess' AND
+            c.caller_id = '".$id."'
+            ORDER BY c.id DESC");
+
+            return view('phone_book.index',compact('data'));
+        }
+        if (Auth::user()->hasRole('Manager') && $filter == 'assigned') {
+            $data =  DB::select("SELECT
+            c.*,
+            CONCAT(r.first_name,' ',r.last_name) AS manager_name,
+           CONCAT(rs.first_name,' ',rs.last_name) AS caller_name
+        FROM
+            contact c
+       LEFT JOIN users r ON
+            r.id = c.manager_id
+        LEFT JOIN users rs ON
+            rs.id = c.caller_id
+        WHERE
+            c.is_deleted = 0 AND 
+            c.caller_id = '".$id."'
+            ORDER BY c.id DESC");
+
+            return view('phone_book.index',compact('data'));
+        }
+
+
+
+           // admin
+           if (Auth::user()->hasRole('admin') && $filter == 'completed') {
+            $data =  DB::select("SELECT
+            c.*,
+            CONCAT(r.first_name,' ',r.last_name) AS manager_name,
+           CONCAT(rs.first_name,' ',rs.last_name) AS caller_name
+        FROM
+            contact c
+       LEFT JOIN users r ON
+            r.id = c.manager_id
+        LEFT JOIN users rs ON
+            rs.id = c.caller_id
+        WHERE
+            c.is_deleted = 0 AND 
+            c.response_status = 'Completed'
+            ORDER BY c.id DESC");
+
+            return view('phone_book.index',compact('data'));
+        }
+        if (Auth::user()->hasRole('admin') && $filter == 'notanswered') {
+            $data =  DB::select("SELECT
+            c.*,
+            CONCAT(r.first_name,' ',r.last_name) AS manager_name,
+           CONCAT(rs.first_name,' ',rs.last_name) AS caller_name
+        FROM
+            contact c
+       LEFT JOIN users r ON
+            r.id = c.manager_id
+        LEFT JOIN users rs ON
+            rs.id = c.caller_id
+        WHERE
+            c.is_deleted = 0 AND 
+            c.response_status = 'NotAnswerd'
+            ORDER BY c.id DESC");
+
+            return view('phone_book.index',compact('data'));
+        }
+        if (Auth::user()->hasRole('admin') && $filter == 'Busy') {
+            $data =  DB::select("SELECT
+            c.*,
+            CONCAT(r.first_name,' ',r.last_name) AS manager_name,
+           CONCAT(rs.first_name,' ',rs.last_name) AS caller_name
+        FROM
+            contact c
+       LEFT JOIN users r ON
+            r.id = c.manager_id
+        LEFT JOIN users rs ON
+            rs.id = c.caller_id
+        WHERE
+            c.is_deleted = 0 AND 
+            c.response_status = 'Busy' 
+            ORDER BY c.id DESC");
+
+            return view('phone_book.index',compact('data'));
+        }
+        if (Auth::user()->hasRole('admin') && $filter == 'Pending') {
+            $data =  DB::select("SELECT
+            c.*,
+            CONCAT(r.first_name,' ',r.last_name) AS manager_name,
+           CONCAT(rs.first_name,' ',rs.last_name) AS caller_name
+        FROM
+            contact c
+       LEFT JOIN users r ON
+            r.id = c.manager_id
+        LEFT JOIN users rs ON
+            rs.id = c.caller_id
+        WHERE
+            c.is_deleted = 0 AND 
+            c.response_status = 'Pending'
+            ORDER BY c.id DESC");
+
+            return view('phone_book.index',compact('data'));
+        }
+        if (Auth::user()->hasRole('admin') && $filter == 'InProcess') {
+            $data =  DB::select("SELECT
+            c.*,
+            CONCAT(r.first_name,' ',r.last_name) AS manager_name,
+           CONCAT(rs.first_name,' ',rs.last_name) AS caller_name
+        FROM
+            contact c
+       LEFT JOIN users r ON
+            r.id = c.manager_id
+        LEFT JOIN users rs ON
+            rs.id = c.caller_id
+        WHERE
+            c.is_deleted = 0 AND 
+            c.response_status = 'InProcess'
+            ORDER BY c.id DESC");
+
+            return view('phone_book.index',compact('data'));
+        }
+        if (Auth::user()->hasRole('admin') && $filter == 'assigned') {
+            $data =  DB::select("SELECT
+            c.*,
+            CONCAT(r.first_name,' ',r.last_name) AS manager_name,
+           CONCAT(rs.first_name,' ',rs.last_name) AS caller_name
+        FROM
+            contact c
+       LEFT JOIN users r ON
+            r.id = c.manager_id
+        LEFT JOIN users rs ON
+            rs.id = c.caller_id
+        WHERE
+            c.is_deleted = 0 AND 
+            c.caller_id IS NOT NULL OR c.manager_id IS NOT NULL
+            ORDER BY c.id DESC");
+
+            return view('phone_book.index',compact('data'));
+        }
     }
 
     /**
@@ -196,7 +535,7 @@ class PhoneBookController extends Controller
        c.first_name,
        c.last_name,
          l.*,
-       c.created_at
+       l.created_at
    FROM
        caller_log l
    JOIN contact c ON
@@ -223,6 +562,7 @@ class PhoneBookController extends Controller
             'phone_num' => $request->phone_num,
             'address' => $request->address,
             'remarks' => $request->dep_remarks,
+            'response_status' => $request->response_status,
             'updated_by' => Auth::user()->id,
             'updated_at' => $date,
             
@@ -235,12 +575,22 @@ class PhoneBookController extends Controller
                 'created_by'=>Auth::user()->id,
             ]);
         }
-        // if($request->response_status == '6'){
-        //     LeadModel::create([
-        //         'client_id' => $id,
-        //         'created_by' => Auth::user()->id,
-        //     ]);
-        // }
+        if($request->response_status == '6'){
+            LeadModel::create([
+                'client_id' => $id,
+                'remarks' => $request->dep_remarks,
+                'created_by' => Auth::user()->id,
+            ]);
+        }
+       if ( $request->country == NULL || $request->category == NULL || $request->arrival_date == NULL || $request->departure_date == NULL || $request->state == NULL) {
+        CallerLogModel::create([
+            'contact_id' => $id,
+            'caller_name' => Auth::user()->first_name." ".Auth::user()->last_name,
+            'remarks' => $request->dep_remarks,
+            'response_status' => $request->response_status,
+            'created_by'=>Auth::user()->id,
+        ]);
+       }else{
         CallerLogModel::create([
             'contact_id' => $id,
             'caller_name' => Auth::user()->first_name." ".Auth::user()->last_name,
@@ -250,6 +600,7 @@ class PhoneBookController extends Controller
             'visa_info' => $request->country." ".$request->category,
             'ticket_info' => "Arrival Date: ".$request->arrival_date."\n"."Departure Date: ".$request->departure_date."\n"."Sector: ".$request->state,
         ]);
+       }
        return redirect()->back();
         // if ($request->transport == 'transport') {
         //     # code...

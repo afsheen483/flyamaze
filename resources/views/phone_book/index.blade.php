@@ -23,6 +23,7 @@
 @hasrole('caller')
 <div class="row">
     <div class="col-sm-6 col-xl-3 calls">
+       <a href="/phone_book/completed">
         <div class="card">
             <div class="card-heading p-3">
                 <div class="mini-stat-icon float-right">
@@ -39,44 +40,50 @@
                 {{-- <p class="text-muted mt-2 mb-0">Previous period<span class="float-right">75%</span></p> --}}
             </div>
         </div>
+       </a>
     </div>
     <div class="col-sm-6 col-xl-3 calls">
-        <div class="card">
-            <div class="card-heading p-3">
-                <div class="mini-stat-icon float-right">
-                    <i class="fa fa-phone bg-success  text-white"></i>
+        <a href="/phone_book/notanswered">
+            <div class="card">
+                <div class="card-heading p-3">
+                    <div class="mini-stat-icon float-right">
+                        <i class="fa fa-phone bg-success  text-white"></i>
+                    </div>
+                    <div>
+                        <h5 class="font-16">Not Answered</h5>
+                    </div>
+                    <h3 class="mt-4">{{ \App\Models\ContactModel::where('response_status','NotAnswerd')->where('caller_id','=',Auth::user()->id)->where('is_deleted','=',0)->get()->count() }}</h3>
+                    <div class="progress mt-4" style="height: 4px;">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="75"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    {{-- <p class="text-muted mt-2 mb-0">Previous period<span class="float-right">75%</span></p> --}}
                 </div>
-                <div>
-                    <h5 class="font-16">Not Answered</h5>
-                </div>
-                <h3 class="mt-4">{{ \App\Models\ContactModel::where('response_status','NotAnswerd')->where('caller_id','=',Auth::user()->id)->where('is_deleted','=',0)->get()->count() }}</h3>
-                <div class="progress mt-4" style="height: 4px;">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="75"
-                        aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                {{-- <p class="text-muted mt-2 mb-0">Previous period<span class="float-right">75%</span></p> --}}
             </div>
-        </div>
+        </a>
     </div>
     <div class="col-sm-6 col-xl-3 calls">
-        <div class="card">
-            <div class="card-heading p-3">
-                <div class="mini-stat-icon float-right">
-                    <i class="fa fa-phone bg-success  text-white"></i>
+        <a href="/phone_book/Busy">
+            <div class="card">
+                <div class="card-heading p-3">
+                    <div class="mini-stat-icon float-right">
+                        <i class="fa fa-phone bg-success  text-white"></i>
+                    </div>
+                    <div>
+                        <h5 class="font-16">Busy Calls</h5>
+                    </div>
+                    <h3 class="mt-4">{{ \App\Models\ContactModel::where('response_status','Busy')->where('caller_id','=',Auth::user()->id)->where('is_deleted','=',0)->get()->count() }}</h3>
+                    <div class="progress mt-4" style="height: 4px;">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="75"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    {{-- <p class="text-muted mt-2 mb-0">Previous period<span class="float-right">75%</span></p> --}}
                 </div>
-                <div>
-                    <h5 class="font-16">Busy Calls</h5>
-                </div>
-                <h3 class="mt-4">{{ \App\Models\ContactModel::where('response_status','Busy')->where('caller_id','=',Auth::user()->id)->where('is_deleted','=',0)->get()->count() }}</h3>
-                <div class="progress mt-4" style="height: 4px;">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="75"
-                        aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                {{-- <p class="text-muted mt-2 mb-0">Previous period<span class="float-right">75%</span></p> --}}
             </div>
-        </div>
+        </a>
     </div>
     <div class="col-sm-6 col-xl-3 calls">
+       <a href="/phone_book/Pending">
         <div class="card">
             <div class="card-heading p-3">
                 <div class="mini-stat-icon float-right">
@@ -93,9 +100,11 @@
                 {{-- <p class="text-muted mt-2 mb-0">In-Process Calls<span class="float-right">88%</span></p> --}}
             </div>
         </div>
+       </a>
     </div>
 
     <div class="col-sm-6 col-xl-3 calls">
+       <a href="/phone_book/InProcess">
         <div class="card">
             <div class="card-heading p-3">
                 <div class="mini-stat-icon float-right">
@@ -112,9 +121,11 @@
                 {{-- <p class="text-muted mt-2 mb-0">Previous period<span class="float-right">68%</span></p> --}}
             </div>
         </div>
+       </a>
     </div>
 
     <div class="col-sm-6 col-xl-3 calls">
+       <a href="/phone_book/assigned">
         <div class="card">
             <div class="card-heading p-3">
                 <div class="mini-stat-icon float-right">
@@ -131,6 +142,7 @@
                 {{-- <p class="text-muted mt-2 mb-0">Previous period<span class="float-right">82%</span></p> --}}
             </div>
         </div>
+       </a>
     </div>
 </div>
 
@@ -139,6 +151,7 @@
 @hasrole('Manager')
 <div class="row">
     <div class="col-sm-6 col-xl-3 calls">
+        <a href="/phone_book/completed">
         <div class="card">
             <div class="card-heading p-3">
                 <div class="mini-stat-icon float-right">
@@ -155,44 +168,50 @@
                 {{-- <p class="text-muted mt-2 mb-0">Previous period<span class="float-right">75%</span></p> --}}
             </div>
         </div>
+       </a>
     </div>
     <div class="col-sm-6 col-xl-3 calls">
-        <div class="card">
-            <div class="card-heading p-3">
-                <div class="mini-stat-icon float-right">
-                    <i class="fa fa-phone bg-success  text-white"></i>
+        <a href="/phone_book/notanswered">
+            <div class="card">
+                <div class="card-heading p-3">
+                    <div class="mini-stat-icon float-right">
+                        <i class="fa fa-phone bg-success  text-white"></i>
+                    </div>
+                    <div>
+                        <h5 class="font-16">Not Answered</h5>
+                    </div>
+                    <h3 class="mt-4">{{ \App\Models\ContactModel::where('response_status','NotAnswerd')->where('manager_id','=',Auth::user()->id)->where('is_deleted','=',0)->get()->count() }}</h3>
+                    <div class="progress mt-4" style="height: 4px;">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="75"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    {{-- <p class="text-muted mt-2 mb-0">Previous period<span class="float-right">75%</span></p> --}}
                 </div>
-                <div>
-                    <h5 class="font-16">Not Answered</h5>
-                </div>
-                <h3 class="mt-4">{{ \App\Models\ContactModel::where('response_status','NotAnswerd')->where('manager_id','=',Auth::user()->id)->where('is_deleted','=',0)->get()->count() }}</h3>
-                <div class="progress mt-4" style="height: 4px;">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="75"
-                        aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                {{-- <p class="text-muted mt-2 mb-0">Previous period<span class="float-right">75%</span></p> --}}
             </div>
-        </div>
+        </a>
     </div>
     <div class="col-sm-6 col-xl-3 calls">
-        <div class="card">
-            <div class="card-heading p-3">
-                <div class="mini-stat-icon float-right">
-                    <i class="fa fa-phone bg-success  text-white"></i>
+        <a href="/phone_book/Busy">
+            <div class="card">
+                <div class="card-heading p-3">
+                    <div class="mini-stat-icon float-right">
+                        <i class="fa fa-phone bg-success  text-white"></i>
+                    </div>
+                    <div>
+                        <h5 class="font-16">Busy Calls</h5>
+                    </div>
+                    <h3 class="mt-4">{{ \App\Models\ContactModel::where('response_status','Busy')->where('manager_id','=',Auth::user()->id)->where('is_deleted','=',0)->get()->count() }}</h3>
+                    <div class="progress mt-4" style="height: 4px;">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="75"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    {{-- <p class="text-muted mt-2 mb-0">Previous period<span class="float-right">75%</span></p> --}}
                 </div>
-                <div>
-                    <h5 class="font-16">Busy Calls</h5>
-                </div>
-                <h3 class="mt-4">{{ \App\Models\ContactModel::where('response_status','Busy')->where('manager_id','=',Auth::user()->id)->where('is_deleted','=',0)->get()->count() }}</h3>
-                <div class="progress mt-4" style="height: 4px;">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="75"
-                        aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                {{-- <p class="text-muted mt-2 mb-0">Previous period<span class="float-right">75%</span></p> --}}
             </div>
-        </div>
+        </a>
     </div>
     <div class="col-sm-6 col-xl-3 calls">
+        <a href="/phone_book/Pending">
         <div class="card">
             <div class="card-heading p-3">
                 <div class="mini-stat-icon float-right">
@@ -209,28 +228,32 @@
                 {{-- <p class="text-muted mt-2 mb-0">In-Process Calls<span class="float-right">88%</span></p> --}}
             </div>
         </div>
+        </a>
     </div>
 
     <div class="col-sm-6 col-xl-3 calls">
-        <div class="card">
-            <div class="card-heading p-3">
-                <div class="mini-stat-icon float-right">
-                    <i class="fas fa-spinner bg-warning text-white"></i>
+        <a href="/phone_book/InProcess">
+            <div class="card">
+                <div class="card-heading p-3">
+                    <div class="mini-stat-icon float-right">
+                        <i class="fas fa-spinner bg-warning text-white"></i>
+                    </div>
+                    <div>
+                        <h5 class="font-16">In progress</h5>
+                    </div>
+                    <h3 class="mt-4">{{ \App\Models\ContactModel::where('response_status','InProcess')->where('manager_id','=',Auth::user()->id)->where('is_deleted','=',0)->get()->count() }}</h3>
+                    <div class="progress mt-4" style="height: 4px;">
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: 68%" aria-valuenow="68"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    {{-- <p class="text-muted mt-2 mb-0">Previous period<span class="float-right">68%</span></p> --}}
                 </div>
-                <div>
-                    <h5 class="font-16">In progress</h5>
-                </div>
-                <h3 class="mt-4">{{ \App\Models\ContactModel::where('response_status','InProcess')->where('manager_id','=',Auth::user()->id)->where('is_deleted','=',0)->get()->count() }}</h3>
-                <div class="progress mt-4" style="height: 4px;">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 68%" aria-valuenow="68"
-                        aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                {{-- <p class="text-muted mt-2 mb-0">Previous period<span class="float-right">68%</span></p> --}}
             </div>
-        </div>
+        </a>
     </div>
 
     <div class="col-sm-6 col-xl-3 calls">
+        <a href="/phone_book/assigned">
         <div class="card">
             <div class="card-heading p-3">
                 <div class="mini-stat-icon float-right">
@@ -247,120 +270,133 @@
                 {{-- <p class="text-muted mt-2 mb-0">Previous period<span class="float-right">82%</span></p> --}}
             </div>
         </div>
+        </a>
     </div>
 </div>
 @endhasrole
 @hasrole('admin')
 <div class="row">
     <div class="col-sm-6 col-xl-3 calls">
-        <div class="card">
-            <div class="card-heading p-3">
-                <div class="mini-stat-icon float-right">
-                    <i class="fa fa-phone bg-success  text-white"></i>
+        <a href="/phone_book/completed">
+            <div class="card">
+                <div class="card-heading p-3">
+                    <div class="mini-stat-icon float-right">
+                        <i class="fa fa-phone bg-success  text-white"></i>
+                    </div>
+                    <div>
+                        <h5 class="font-16">Completed </h5>
+                    </div>
+                    <h3 class="mt-4">{{ \App\Models\ContactModel::where('response_status','Completed')->where('is_deleted','=',0)->get()->count() }}</h3>
+                    <div class="progress mt-4" style="height: 4px;">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="75"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    {{-- <p class="text-muted mt-2 mb-0">Previous period<span class="float-right">75%</span></p> --}}
                 </div>
-                <div>
-                    <h5 class="font-16">Completed </h5>
-                </div>
-                <h3 class="mt-4">{{ \App\Models\ContactModel::where('response_status','Completed')->where('is_deleted','=',0)->get()->count() }}</h3>
-                <div class="progress mt-4" style="height: 4px;">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="75"
-                        aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                {{-- <p class="text-muted mt-2 mb-0">Previous period<span class="float-right">75%</span></p> --}}
             </div>
-        </div>
+        </a>
     </div>
     <div class="col-sm-6 col-xl-3 calls">
-        <div class="card">
-            <div class="card-heading p-3">
-                <div class="mini-stat-icon float-right">
-                    <i class="fa fa-phone bg-success  text-white"></i>
+        <a href="/phone_book/notanswered">
+            <div class="card">
+                <div class="card-heading p-3">
+                    <div class="mini-stat-icon float-right">
+                        <i class="fa fa-phone bg-success  text-white"></i>
+                    </div>
+                    <div>
+                        <h5 class="font-16">Not Answered</h5>
+                    </div>
+                    <h3 class="mt-4">{{ \App\Models\ContactModel::where('response_status','NotAnswerd')->where('is_deleted','=',0)->get()->count() }}</h3>
+                    <div class="progress mt-4" style="height: 4px;">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="75"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    {{-- <p class="text-muted mt-2 mb-0">Previous period<span class="float-right">75%</span></p> --}}
                 </div>
-                <div>
-                    <h5 class="font-16">Not Answered</h5>
-                </div>
-                <h3 class="mt-4">{{ \App\Models\ContactModel::where('response_status','NotAnswerd')->where('is_deleted','=',0)->get()->count() }}</h3>
-                <div class="progress mt-4" style="height: 4px;">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="75"
-                        aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                {{-- <p class="text-muted mt-2 mb-0">Previous period<span class="float-right">75%</span></p> --}}
             </div>
-        </div>
+        </a>
     </div>
     <div class="col-sm-6 col-xl-3 calls">
-        <div class="card">
-            <div class="card-heading p-3">
-                <div class="mini-stat-icon float-right">
-                    <i class="fa fa-phone bg-success  text-white"></i>
+        <a href="/phone_book/Busy">
+            <div class="card">
+                <div class="card-heading p-3">
+                    <div class="mini-stat-icon float-right">
+                        <i class="fa fa-phone bg-success  text-white"></i>
+                    </div>
+                    <div>
+                        <h5 class="font-16">Busy Calls</h5>
+                    </div>
+                    <h3 class="mt-4">{{ \App\Models\ContactModel::where('response_status','Busy')->where('is_deleted','=',0)->get()->count() }}</h3>
+                    <div class="progress mt-4" style="height: 4px;">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="75"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    {{-- <p class="text-muted mt-2 mb-0">Previous period<span class="float-right">75%</span></p> --}}
                 </div>
-                <div>
-                    <h5 class="font-16">Busy Calls</h5>
-                </div>
-                <h3 class="mt-4">{{ \App\Models\ContactModel::where('response_status','Busy')->where('is_deleted','=',0)->get()->count() }}</h3>
-                <div class="progress mt-4" style="height: 4px;">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="75"
-                        aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                {{-- <p class="text-muted mt-2 mb-0">Previous period<span class="float-right">75%</span></p> --}}
             </div>
-        </div>
+        </a>
     </div>
     <div class="col-sm-6 col-xl-3 calls">
-        <div class="card">
-            <div class="card-heading p-3">
-                <div class="mini-stat-icon float-right">
-                    <i class="fas fa-exclamation-triangle  bg-danger text-white"></i>
+        <a href="/phone_book/Pending">
+            <div class="card">
+                <div class="card-heading p-3">
+                    <div class="mini-stat-icon float-right">
+                        <i class="fas fa-exclamation-triangle  bg-danger text-white"></i>
+                    </div>
+                    <div>
+                        <h5 class="font-16">Pending Calls</h5>
+                    </div>
+                    <h3 class="mt-4">{{ \App\Models\ContactModel::where('response_status','Pending')->where('is_deleted','=',0)->get()->count() }}</h3>
+                    <div class="progress mt-4" style="height: 4px;">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: 88%" aria-valuenow="88"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    {{-- <p class="text-muted mt-2 mb-0">In-Process Calls<span class="float-right">88%</span></p> --}}
                 </div>
-                <div>
-                    <h5 class="font-16">Pending Calls</h5>
-                </div>
-                <h3 class="mt-4">{{ \App\Models\ContactModel::where('response_status','Pending')->where('is_deleted','=',0)->get()->count() }}</h3>
-                <div class="progress mt-4" style="height: 4px;">
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: 88%" aria-valuenow="88"
-                        aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                {{-- <p class="text-muted mt-2 mb-0">In-Process Calls<span class="float-right">88%</span></p> --}}
             </div>
-        </div>
-    </div>
-
-    <div class="col-sm-6 col-xl-3 calls">
-        <div class="card">
-            <div class="card-heading p-3">
-                <div class="mini-stat-icon float-right">
-                    <i class="fas fa-spinner bg-warning text-white"></i>
-                </div>
-                <div>
-                    <h5 class="font-16">In progress</h5>
-                </div>
-                <h3 class="mt-4">{{ \App\Models\ContactModel::where('response_status','InProcess')->where('is_deleted','=',0)->get()->count() }}</h3>
-                <div class="progress mt-4" style="height: 4px;">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 68%" aria-valuenow="68"
-                        aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                {{-- <p class="text-muted mt-2 mb-0">Previous period<span class="float-right">68%</span></p> --}}
-            </div>
-        </div>
+        </a>
     </div>
 
     <div class="col-sm-6 col-xl-3 calls">
-        <div class="card">
-            <div class="card-heading p-3">
-                <div class="mini-stat-icon float-right">
-                    <i class="fas fa-th-list bg-primary text-white"></i>
+        <a href="/phone_book/InProcess">
+            <div class="card">
+                <div class="card-heading p-3">
+                    <div class="mini-stat-icon float-right">
+                        <i class="fas fa-spinner bg-warning text-white"></i>
+                    </div>
+                    <div>
+                        <h5 class="font-16">In progress</h5>
+                    </div>
+                    <h3 class="mt-4">{{ \App\Models\ContactModel::where('response_status','InProcess')->where('is_deleted','=',0)->get()->count() }}</h3>
+                    <div class="progress mt-4" style="height: 4px;">
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: 68%" aria-valuenow="68"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    {{-- <p class="text-muted mt-2 mb-0">Previous period<span class="float-right">68%</span></p> --}}
                 </div>
-                <div>
-                    <h5 class="font-16">Total Assigned</h5>
-                </div>
-                <h3 class="mt-4">{{ \App\Models\ContactModel::where('caller_id','!=','')->orWhere('manager_id','!=','')->where('is_deleted','=',0)->get()->count() }}</h3>
-                <div class="progress mt-4" style="height: 4px;">
-                    <div class="progress-bar bg-primary" role="progressbar" style="width: 82%" aria-valuenow="82"
-                        aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                {{-- <p class="text-muted mt-2 mb-0">Previous period<span class="float-right">82%</span></p> --}}
             </div>
-        </div>
+        </a>
+    </div>
+
+    <div class="col-sm-6 col-xl-3 calls">
+        <a href="/phone_book/assigned">
+            <div class="card">
+                <div class="card-heading p-3">
+                    <div class="mini-stat-icon float-right">
+                        <i class="fas fa-th-list bg-primary text-white"></i>
+                    </div>
+                    <div>
+                        <h5 class="font-16">Total Assigned</h5>
+                    </div>
+                    <h3 class="mt-4">{{ \App\Models\ContactModel::where('caller_id','!=','')->orWhere('manager_id','!=','')->where('is_deleted','=',0)->get()->count() }}</h3>
+                    <div class="progress mt-4" style="height: 4px;">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: 82%" aria-valuenow="82"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    {{-- <p class="text-muted mt-2 mb-0">Previous period<span class="float-right">82%</span></p> --}}
+                </div>
+            </div>
+        </a>
     </div>
 </div>
 @endhasrole
@@ -369,53 +405,52 @@
     <div class="col-12">
         <div class="card m-b-30">
             <div class="card-body">
-               @hasrole('caller')
+             
+               
+               
+               
               
-                <div class="col-md-2 col-lg-2 col-sm-2" style="margin-bottom:1em" >
-                    <a href="{{ url('phonebook_form',['id'=>0]) }}" class="btn btn-outline-primary" >Create New Contact</a>
-                </div>
-                <div class="col-lg-9 col-md-9 col-xs-9" >
-                    <form action="{{ route('file-import') }}" method="POST" enctype="multipart/form-data" id="bulk_form" class="form-inline" style="margin-left:20%;">
-                         @csrf
-                         
-                         <input type="file" name="file" required>
-                                 {{-- <label class="custom-file-label" for="customFile">Choose file</label> --}}
+                <div class="row" style="margin-bottom:1em;margin-left:1.4%" >
+                    @hasanyrole('caller|admin|Manager')
+              
+                    <a href="{{ url('phonebook_form',['id'=>0]) }}" class="btn btn-primary" >Create New Contact</a>&nbsp;
+                  
+                    @endhasanyrole
+                        @hasrole('admin')
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >
+                            Assign Manager
+                        </button>&nbsp;
+                          
+                        @endhasrole
+                        @hasanyrole('admin|Manager')
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1" >
+                         Assign Caller
+                         </button>&nbsp;
+                         @endhasanyrole
+                         <form action="{{ route('file-import') }}" method="POST" enctype="multipart/form-data" id="bulk_form" class="form-inline">
+                            @csrf
                             
-                         <button class="btn btn-info">Import data</button>&nbsp;&nbsp;
-                         <a href="{{ asset('upload/sample.xlsx') }}" class="btn btn-success" target="_blank">Sample File</a>&nbsp;&nbsp;
-                         <a href="{{ asset('upload/sample1.xlsx') }}" class="btn btn-success" target="_blank">Only Contact</a>
-     
-                         {{-- <a class="btn btn-success" href="{{ route('file-export') }}">Export data</a> --}}
-                     </form>
-                 </div>
-              
-               @else
-              
-                <div class="col-md-2 col-lg-2 col-sm-2" style="margin-bottom:1em" >
-                    <a href="{{ url('phonebook_form',['id'=>0]) }}" class="btn btn-primary" >Create New Contact</a>
+                            <input type="file" name="file" required>
+                                    {{-- <label class="custom-file-label" for="customFile">Choose file</label> --}}
+                               
+                            <button class="btn btn-info">Import data</button>&nbsp;&nbsp;
+                            <a href="{{ asset('upload/sample.xlsx') }}" class="btn btn-success" target="_blank">Sample File</a>&nbsp;&nbsp;
+                            <a href="{{ asset('upload/sample1.xlsx') }}" class="btn btn-success" target="_blank">Only Contact</a>
+        
+                            {{-- <a class="btn btn-success" href="{{ route('file-export') }}">Export data</a> --}}
+                        </form>
+                       
                 </div>
-                <div class="col-lg-9 col-md-9 col-xs-9" >
-                    <form action="{{ route('file-import') }}" method="POST" enctype="multipart/form-data" id="bulk_form" class="form-inline" style="margin-left:20%;">
-                         @csrf
-                         
-                         <input type="file" name="file" required>
-                                 {{-- <label class="custom-file-label" for="customFile">Choose file</label> --}}
-                            
-                         <button class="btn btn-info">Import data</button>&nbsp;&nbsp;
-                         <a href="{{ asset('upload/sample.xlsx') }}" class="btn btn-success" target="_blank">Sample File</a>&nbsp;&nbsp;
-                         <a href="{{ asset('upload/sample1.xlsx') }}" class="btn btn-success" target="_blank">Only Contact</a>
-     
-                         {{-- <a class="btn btn-success" href="{{ route('file-export') }}">Export data</a> --}}
-                     </form>
-                 </div>
+               
+             
+             
+              
+                
+                    
+                 
               
                  <!-- Button trigger modal -->
-                    @hasrole('admin')
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="margin-left: 1.4%">
-                        Assign Manager
-                    </button>
-                    
-                    @endhasrole
+                   
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -457,15 +492,10 @@
                         </div>
                         </div>
                     </div>
-               @endhasrole
+            
                 <br>
 
-              @hasanyrole('admin|Manager')
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1" style="margin-left: 1.4%">
-                Assign Caller
-            </button>
-            
-              @endhasanyrole
+             
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -518,7 +548,7 @@
                             <th>Caller</th>
                             <th>Manager</th>
                             <th>Remarks</th>
-                            <th>Response Status</th>
+                            <th>Status</th>
                             <th>Last Updated</th>
                             <th>Actions</th>
                         </tr>
@@ -537,14 +567,14 @@
                         <td>{{ $data->first_name }}{{ " " }}{{ $data->last_name }}</td>
                         <td>{{ $data->email }}</td>
                         <td>{{ $data->phone_num }}</td>
-                        <td>{{ $data->city }}</td>
+                        <td>{{ $data->address }}</td>
                         <td>{{ $data->caller_name }}</td>
                         <td>{{ $data->manager_name }}</td>
                         <td>{{ $data->remarks }}</td>
                         <td>
                             <span class="badge badge-pill badge-success">{{ $data->response_status }}</span>
                         </td>
-                        <td>{{ $data->entry_date }}</td>
+                        <td>{{ $data->updated_at }}</td>
                         <td>
                             <div>
                                 <a href="{{ url('phonebook_form',['id'=>$data->id]) }}" class="mdi mdi-circle-edit-outline mdi-18px"

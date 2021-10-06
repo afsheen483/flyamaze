@@ -88,3 +88,8 @@ Route::post('/Hotel/Create', 'ServiceController@storeHotel');
 
 // route response status
 Route::put('response_status/{id}','PhoneBookController@StoreResponseStatus');
+
+
+// route filters
+
+Route::get('phone_book/{filter}','PhoneBookController@show');

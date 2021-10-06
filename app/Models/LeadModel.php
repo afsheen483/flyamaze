@@ -13,6 +13,7 @@ class LeadModel extends Model
     protected $fillable = [
         'client_id',
         'created_at',
+        'remarks',
         'created_by',
         'updated_at',
         'updated_by',
